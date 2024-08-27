@@ -123,4 +123,97 @@ SELECT *
 FROM tb_clientes
 WHERE id_cliente > ALL(2,3,4);
 
+--OPERADOR LIKE: PROCURAR UM PADRÃO EM UM STRING - OS PADROES SÃO ESPECIFICADOS USANDO UMA COMBINAÇÃO DE CARACTERES E OS DOIS CARACTERES CURINGA: "_" CORRESPONDE
+--A UM CARACTERE UM UMA POSIÇÃO ESPECÍFICA. "%" CORRESPONDE A QUALQUER NUMERO DE CARACTERES A PARTIR DE UMA DETERMINADA POSIÇÃO
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '_o%'; --SIGNIFICA QUE O PRIMEIRO CARACTERE NÃO IMPORTA E O SEGUNDO TEM Q SER O 'O'
 
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '%a';
+
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE 'J%';
+
+SELECT *
+FROM tb_clientes
+WHERE nome LIKE '____';
+
+--O 'ESCAPE' DIZ AO BD COMO DIFERENCIAR OS CARACTERES A SEREM PESQUISADOS DOS CURINGAS (BARRA INVERTIDA)
+SELECT nome
+FROM tb_promocao
+WHERE nome LIKE '%\%%'ESCAPE'\';
+
+--OPERADOR IN - RECUPERAR AS TUPLAS CUJO VALOR DA COLUNA ESTA EM UMA LISTA
+SELECT * 
+FROM tb_clientes
+WHERE id_cliente IN (2,3,5);
+
+SELECT * 
+FROM tb_clientes
+WHERE id_cliente NOT IN (2,3,5);
+
+SELECT * 
+FROM tb_clientes
+WHERE id_cliente NOT IN (2,3,5, NULL);
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT IN (2, 3, 5, NVL(NULL, 0));
+
+--OPERADOR BETWEEN: RECUPERA VALORES ENTRE OS PARÂMETROS
+SELECT *
+FROM tb_clientes
+WHERE id_cliente BETWEEN 1 AND 3;
+
+SELECT *
+FROM tb_clientes
+WHERE id_cliente NOT BETWEEN 1 AND 3;
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' AND id_cliente > 3;
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' OR id_cliente > 3;
+
+SELECT *
+FROM tb_clientes
+WHERE dt_nascimento > '01/JAN/1970' OR id_cliente < 2 AND telefone LIKE '%1211';
+
+--ORDER BY- CLASSIFICAR AS CONSULTAS
+SELECT *
+FROM tb_clientes
+ORDER BY sobrenome;
+
+--PODEMOS USAR ASC E DESC PARA CRESCENTE E DECRESCENTE 
+SELECT *
+FROM tb_clientes
+ORDER BY nome ASC, sobrenome DESC;
+
+SELECT id_cliente, nome, sobrenome
+FROM tb_clientes
+ORDER BY 1;
+
+SELECT id_cliente, nome, sobrenome
+FROM tb_clientes
+ORDER BY 2;
+
+--JOIN
+SELECT tb_produtos.nm_produto, tb_tipos_produtos.nm_tipo_produto
+FROM tb_produtos, tb_tipos_produtos
+WHERE tb_produtos.id_tipo_produto = tb_tipos_produtos.id_tipo_produto AND tb_produtos.id_produto = 3;
+
+SELECT tb_produtos.nm_produto, tb_tipos_produtos.nm_tipo_produto
+FROM tb_produtos, tb_tipos_produtos
+WHERE tb_produtos.id_tipo_produto = tb_tipos_produtos.id_tipo_produto
+ORDER BY tb_produtos.nm_produto;
+
+--USANDO APELIDOS
+SELECT p.nm_produto, tp.nm_tipo_produto
+FROM tb_produtos p , tb_tipos_produtos tp
+WHERE p.id_tipo_produto = tp.id_tipo_produto
+ORDER BY p.nm_produto;
