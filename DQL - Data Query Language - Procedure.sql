@@ -19,13 +19,13 @@ COMMIT;
 SELECT *
 FROM tb_grades_salarios
 
---INSTRU«√O UPDATE -> USADA PARA ALTERAR TUPLAS EM TABELAS DO BD 
-    --EM UMA INSTRU«√O DE UPDATE PODEMOS ESPECIFICAR AS SEGUINTES INFORMA«’ES: A TABELA QUE CONTEM AS LINHAS A SEREM ALTERADAS
+--INSTRU√á√ÉO UPDATE -> USADA PARA ALTERAR TUPLAS EM TABELAS DO BD 
+    --EM UMA INSTRU√á√ÉO DE UPDATE PODEMOS ESPECIFICAR AS SEGUINTES INFORMA√á√ïES: A TABELA QUE CONTEM AS LINHAS A SEREM ALTERADAS
     --UMA CLAUSULA WHERE ESPECIFICANDO AS LINHAS A SEREM ALTERADAS
     --UMA LISTA DE NOMES DE COLUNAS, JUNTO COM SEUS NOVOS VALORES, ESPECIFICADO COM A CLAUSULA SET
-    --OBS:ROLLBACK DESFAZ AS ALTERA«’ES
+    --OBS:ROLLBACK DESFAZ AS ALTERA√á√ïES
     
---EXEMPLO ATUALIZAR O SOBRENOME PARA "Orange" DO CLIENTE CUJO ID CORRESPONDE AO N⁄MERO 2
+--EXEMPLO ATUALIZAR O SOBRENOME PARA "Orange" DO CLIENTE CUJO ID CORRESPONDE AO N√öMERO 2
 UPDATE tb_clientes
 SET sobrenome = 'Orange'
 WHERE id_cliente =2;
@@ -35,33 +35,33 @@ FROM tb_clientes
 
 ROLLBACK;
 
---INSTRU«√O DELETE -> REMOVE TUPLAS DE UMA TABELA EM UM BANCO DE DADOS
-    --A CLAUSULA WHERE LIMITA AS LINHAS QUE SE DESEJA EXCLUIR, CASO CONTRARIO TODAS AS LINHAS SER√O EXCLUIDAS DA TABELA
+--INSTRU√á√ÉO DELETE -> REMOVE TUPLAS DE UMA TABELA EM UM BANCO DE DADOS
+    --A CLAUSULA WHERE LIMITA AS LINHAS QUE SE DESEJA EXCLUIR, CASO CONTRARIO TODAS AS LINHAS SER√ÉO EXCLUIDAS DA TABELA
     
 --EXEMPLO REMOVER O CLIENTE QUE POSSUI O ID EQUIVALENTE A 2
 DELETE 
 FROM tb_clientes
 WHERE id_cliente = 2; 
---Rollback concluÌdo.
+--Rollback conclu√≠do.
 --Erro a partir da linha : 42 no comando -
 --DELETE 
 --FROM tb_clientes
 --WHERE id_cliente = 2
---RelatÛrio de erros -
--- -->ORA-02292: restriÁ„o de integridade (LOJA.FK_TB_COMPRAS_ID_CLIENTE) violada - registro filho localizado
+--Relat√≥rio de erros -
+-- -->ORA-02292: restri√ß√£o de integridade (LOJA.FK_TB_COMPRAS_ID_CLIENTE) violada - registro filho localizado
 
---INSTRU«√O PL/SQL --> LINGUAGEM PROCEDURAL DA ORACLE
-    --Procedure È basicamente um bloco de cÛdigo que executa alguma aÁ„o dentro do nosso banco de dados, 
-    --È um conjunto de comando que podemos executar de uma vez e ele faz determinada tarefa.
-    --PERMITE ADICIONAR PROGRAMA«√O EM TORNO DE INSTRU«OES SQL
-    --USADO PRINCIPALMENTE PARA CRIA«√O DE PROCEDURES E FUNCTIONS EM UM BD
+--INSTRU√á√ÉO PL/SQL --> LINGUAGEM PROCEDURAL DA ORACLE
+    --Procedure √© basicamente um bloco de c√≥digo que executa alguma a√ß√£o dentro do nosso banco de dados, 
+    --√© um conjunto de comando que podemos executar de uma vez e ele faz determinada tarefa.
+    --PERMITE ADICIONAR PROGRAMA√á√ÉO EM TORNO DE INSTRU√áOES SQL
+    --USADO PRINCIPALMENTE PARA CRIA√á√ÉO DE PROCEDURES E FUNCTIONS EM UM BD
 --CODIGO PL/SQL: 
-    --DECLARA«√O DE VARIAVEIS
+    --DECLARA√á√ÉO DE VARIAVEIS
     --LOGICA CONDICIONAL
     --LOOPS
     --PROCEDURES E FUNCTIONS
 
---ESSE PROCEDURE CHAMADO DE "get_cliente" RETORNA O VALOR DE NOME E SOBRENOME DE UMA LINHA SE O ID PASSADO COMO PAR¬METRO "p_id_cliente" FOR ENCONTRADO
+--ESSE PROCEDURE CHAMADO DE "get_cliente" RETORNA O VALOR DE NOME E SOBRENOME DE UMA LINHA SE O ID PASSADO COMO PAR√ÇMETRO "p_id_cliente" FOR ENCONTRADO
 
 create or replace PROCEDURE get_cliente(p_id_cliente IN tb_clientes.id_cliente%TYPE) AS
 v_nome      tb_clientes.nome%TYPE; --TIPO DE DADOS DO v_nome = tipo de dados do atributo nome na tabela clientes
@@ -74,7 +74,7 @@ FROM tb_clientes
 WHERE id_cliente = p_id_cliente;
 
 IF(v_controle = 1) THEN
- --OS VALORES DE NOME, SOBRENOME S√O ATRIBUIDOS PARA AS VARIAVEIS v_nome,v_sobrenome. Na tabela cliente onde o id_cliente for igual ao p_id_cliente
+ --OS VALORES DE NOME, SOBRENOME S√ÉO ATRIBUIDOS PARA AS VARIAVEIS v_nome,v_sobrenome. Na tabela cliente onde o id_cliente for igual ao p_id_cliente
     SELECT nome, sobrenome INTO v_nome, v_sobrenome
     FROM tb_clientes
     WHERE id_cliente = p_id_cliente;
@@ -83,7 +83,7 @@ IF(v_controle = 1) THEN
     DBMS_OUTPUT.PUT_LINE('Cliente localizado: ' || v_nome || ' ' || v_sobrenome);
 
 ELSE
-    DBMS_OUTPUT.PUT_LINE('Cliente n„o localizado');
+    DBMS_OUTPUT.PUT_LINE('Cliente n√£o localizado');
 END IF;
 
 --EXCEPTION TREATMENT
@@ -93,13 +93,13 @@ EXCEPTION
 END get_cliente;
 
 
--- Invocando o objeto "get_c liente" por meio da saÌda DBMS OUTPUT
--- Menu: Exibir > SaÌda Dbms
+-- Invocando o objeto "get_c liente" por meio da sa√≠da DBMS OUTPUT
+-- Menu: Exibir > Sa√≠da Dbms
 CALL get_cliente(1);
 
 CALL get_cliente(90);
 
--- Invocando o objeto "get_cliente" por meio de um bloco anÙnimo
+-- Invocando o objeto "get_cliente" por meio de um bloco an√¥nimo
 SET serveroutput ON
 BEGIN
   get_cliente(3);
@@ -208,7 +208,7 @@ FROM tb_clientes;
 SELECT *
 FROM tb_clientes;
 
---ESPECIFICANDO AS LINHAS A SEREM RECUPERADAS USANDO A CL¡USULA WHERE
+--ESPECIFICANDO AS LINHAS A SEREM RECUPERADAS USANDO A CL√ÅUSULA WHERE
 SELECT *
 FROM tb_clientes
 WHERE id_cliente = 2;
