@@ -38,7 +38,7 @@ FROM dual;
 SELECT TO_CHAR(12345678.90, '99,999.99')
 FROM dual;
 
-SELECT id_produto, 'O preço do produto é: ' || TO_CHAR(preco, 'L99.99')
+SELECT id_produto, 'O preÃ§o do produto Ã©: ' || TO_CHAR(preco, 'L99.99')
 FROM tb_produtos
 WHERE id_produto < 5;
 
@@ -83,30 +83,30 @@ WHERE REGEXP_LIKE(nome, 'j', 'i');
 
 
 SELECT
-   REGEXP_INSTR('Teste de expressão regular', 'e', 6, 2) AS resultado
+   REGEXP_INSTR('Teste de expressÃ£o regular', 'e', 6, 2) AS resultado
 FROM dual;
 
 
 SELECT 
-   REGEXP_REPLACE('Teste de expressão regular', 
+   REGEXP_REPLACE('Teste de expressÃ£o regular', 
                   'd[[:alpha:]]{1}', 'Oracle') AS resultado
 FROM dual;
 
 
 SELECT
-   REGEXP_SUBSTR('Teste de expressão regular', 'e[[:alpha:]]{8}') AS resultado
+   REGEXP_SUBSTR('Teste de expressÃ£o regular', 'e[[:alpha:]]{8}') AS resultado
 FROM dual;
 
 
 SELECT 
-  REGEXP_COUNT('teste teste teste expressão regular', 't[[:alpha:]]{4}') AS resultado
+  REGEXP_COUNT('teste teste teste expressÃ£o regular', 't[[:alpha:]]{4}') AS resultado
 FROM dual;
 
 
 SELECT AVG(preco)
 FROM tb_produtos;
 
-SELECT CAST(AVG(preco) AS NUMBER(5,2)) "Média de Preço"
+SELECT CAST(AVG(preco) AS NUMBER(5,2)) "MÃ©dia de PreÃ§o"
 FROM tb_produtos;
 
 
