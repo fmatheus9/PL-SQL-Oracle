@@ -1,9 +1,9 @@
 --FUNCOES DE UMA LINHA SO 
---ASCII - A função ASCII retorna o código ASCII, ou o ponto de código Unicode, do primeiro caractere na string que você especificar. 
+--ASCII - A funÃ§Ã£o ASCII retorna o cÃ³digo ASCII, ou o ponto de cÃ³digo Unicode, do primeiro caractere na string que vocÃª especificar. 
 SELECT ASCII('a')
 FROM dual;
 
---CHR - Retorna uma Cadeia de Caracteres que contém o caractere associado ao código de caractere especificado .
+--CHR - Retorna uma Cadeia de Caracteres que contÃ©m o caractere associado ao cÃ³digo de caractere especificado .
 SELECT CHR(97)
 FROM dual;
 
@@ -32,7 +32,7 @@ FROM tb_produtos;
 SELECT UPPER(nome), LOWER(sobrenome)
 FROM tb_funcionarios;
 
---LPAD e RPAD - Preenche um valor com espaços a esquerda e direita
+--LPAD e RPAD - Preenche um valor com espaÃ§os a esquerda e direita
 SELECT RPAD(nm_produto,30,'.'), LPAD(preco,8, '*+')
 FROM tb_produtos
 WHERE id_produto <4;
@@ -50,7 +50,7 @@ FROM tb_clientes
 ORDER BY id_cliente DESC;
 
 --NVL2 - Retorna um valor caso 'x' nao seja nulo, caso contrario retorna outro valor
-SELECT id_cliente, NVL2(telefone, 'Telefone existente', 'Telefone não existente')
+SELECT id_cliente, NVL2(telefone, 'Telefone existente', 'Telefone nÃ£o existente')
 FROM tb_clientes
 ORDER BY id_cliente DESC;
 
@@ -59,13 +59,13 @@ SELECT REPLACE(nm_produto, 'Science', 'Physics')
 FROM tb_produtos
 WHERE id_produto = 1;
 
---SOUNDEX - Obtem um string contendo a representação fonética de um valor
+--SOUNDEX - Obtem um string contendo a representaÃ§Ã£o fonÃ©tica de um valor
 SELECT sobrenome
 FROM tb_clientes
 WHERE SOUNDEX(sobrenome) = SOUNDEX('whyte');
 
 --SUBSTRING - returna um substring de 'x' que inicia na posicao determinada
-SELECT nm_produto, SUBSTR(nm_produto,2,7) -- A partir da 2 posição, pegar mais 7. Pode ser passados valores literais 
+SELECT nm_produto, SUBSTR(nm_produto,2,7) -- A partir da 2 posiÃ§Ã£o, pegar mais 7. Pode ser passados valores literais 
 FROM tb_produtos
 WHERE id_produto<4;
 
@@ -88,7 +88,7 @@ FROM dual;
 SELECT MOD(8,3), MOD(8,4)
 FROM dual;
 
---POWER - Potência
+--POWER - PotÃªncia
 SELECT POWER(2,1), POWER(2,2)
 FROM dual;
 
