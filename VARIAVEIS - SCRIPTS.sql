@@ -1,3 +1,42 @@
+--USANDO VARIAVEIS
+SELECT id_produto, nm_produto, preco
+FROM tb_produtos
+WHERE id_produto = &v_id_produto;
+
+SELECT nm_produto, &v_coluna
+FROM &v_tabela
+WHERE &v_coluna = &v_id_produto;
+
+--PARA EVITAR A DIGITA√á√ÉO REPETITIVA USAMOS O && EM UMA DETERMINADA VARIAVEL
+SELECT nm_produto, &&v_coluna
+FROM &v_tabela
+WHERE &&v_coluna = &v_id_produto;
+
+--DEFINIR UMA VARIAVEL NOMEADA v_id_produto, ATRIBUINDO O VALOR 7
+DEFINE v_id_produto = 7;
+
+SELECT nm_produto, id_produto
+FROM tb_produtos
+WHERE id_produto = &v_id_produto;
+
+--DEFINE UMA VARIAVEL NOMEADA DE V_ID COMO UM NUMERO DE NO MAXIMO DOIS DIGITOS
+ACCEPT v_id NUMBER FORMAT 99 PROMPT 'Entre com o ID':
+SELECT id_produto, nm_produto, preco
+FROM tb_produtos
+WHERE id_produto = &v_id;
+
+DEFINE v_id_produto = 7;
+SELECT nm_produto, id_produto
+FROM tb_produtos
+WHERE id_produto = &v_id_produto;
+UNDEFINE v_id_produto;
+
+--POSIBILIDADE DE GERAR RELATORIOS USANDO VARIAVEIS EM UM SCRIPT SQL
+    --CRIANDO O SCRIPT IDENTIFICADO COM teste1.sql
+    --CRIADO EM UMA NOVA PLANILHA SQL
+@ C:\temp\teste_1.sql
+@ C:\temp\teste_2.sql
+@ C:\temp\teste_3.sql 2
 @ C:\temp\teste_4.sql 6 19.99
 
 SELECT 'DROP TABLE' || table_name ||';'
@@ -24,9 +63,9 @@ ORDER BY 1 DESC;
 TRUNCATE TABLE tb_teste;
 
 
---CRIAR UM STORED PROCEDURE (Procedimento armazenado ou Stored Procedure È uma 
-                            --coleÁ„o de comandos em SQL, que podem ser executadas em um Banco de dados de uma sÛ vez, como em uma funÁ„o.) 
---OBJETIVO: REALIZAR INSTRUCOES DE INSERT, UPDATE, DELETE EM UMA DETERMINADA TABELA POR MEIO DA PASAGEM DE PAR‚METROS
+--CRIAR UM STORED PROCEDURE (Procedimento armazenado ou Stored Procedure √© uma 
+                            --cole√ß√£o de comandos em SQL, que podem ser executadas em um Banco de dados de uma s√≥ vez, como em uma fun√ß√£o.) 
+--OBJETIVO: REALIZAR INSTRUCOES DE INSERT, UPDATE, DELETE EM UMA DETERMINADA TABELA POR MEIO DA PASAGEM DE PAR√¢METROS
 CREATE TABLE tb_cliente_teste(
 id_cliente          INTEGER,
 ds_cliente          VARCHAR2(20),
@@ -46,7 +85,7 @@ CREATE OR REPLACE PROCEDURE manipula_dados(
 AS
   v_controle  INTEGER;
 BEGIN
-  --verifica a existÍncia de tuplas na "tb_cliente_teste"
+  --verifica a exist√™ncia de tuplas na "tb_cliente_teste"
   SELECT COUNT(1) INTO v_controle
   FROM tb_cliente_teste
   WHERE id_cliente = p_id_cliente
@@ -63,7 +102,7 @@ BEGIN
       
       dbms_output.put_line('Cliente inserido com sucesso!');
     ELSE
-      dbms_output.put_line('ID do cliente j· existe');
+      dbms_output.put_line('ID do cliente j√° existe');
     END IF;
   END IF;  
   
@@ -81,7 +120,7 @@ BEGIN
       
       dbms_output.put_line('Cliente alterado com sucesso!');
     ELSE
-      dbms_output.put_line('ID do cliente n„o existe');
+      dbms_output.put_line('ID do cliente n√£o existe');
     END IF;
   END IF;
   
@@ -95,9 +134,9 @@ BEGIN
       
       COMMIT;
       
-      dbms_output.put_line('Cliente excluÌdo com sucesso!');
+      dbms_output.put_line('Cliente exclu√≠do com sucesso!');
     ELSE
-      dbms_output.put_line('ID do cliente n„o existe');
+      dbms_output.put_line('ID do cliente n√£o existe');
     END IF;
   END IF;
   
@@ -107,19 +146,19 @@ EXCEPTION
   
 END manipula_dados;
 
--- Habilitar a saÌda DBMS
--- Menu Exibir > SaÌda DBMS
--- opcao inserir (par‚metro opcao = I)
+-- Habilitar a sa√≠da DBMS
+-- Menu Exibir > Sa√≠da DBMS
+-- opcao inserir (par√¢metro opcao = I)
 CALL manipula_dados(1, 'Cliente 1', 'Nome do cliente 1', 22, 1, 'I');
 
--- opcao inserir (par‚metro opcao = I)
+-- opcao inserir (par√¢metro opcao = I)
 CALL manipula_dados(2, 'Cliente 2', 'Nome do cliente 2', 99, 1, 'I');
 
 
--- opcao alterar (par‚metro opcao = U)
+-- opcao alterar (par√¢metro opcao = U)
 CALL manipula_dados(2, 'Cliente alterado hoje', 'Alterado', 110, 1, 'U');
 
--- opcao excluir (par‚metro opcao = D)
+-- opcao excluir (par√¢metro opcao = D)
 CALL manipula_dados(2, NULL, NULL, NULL, NULL, 'D');
 
 SELECT *
