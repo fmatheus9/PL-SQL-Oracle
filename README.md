@@ -14,3 +14,4 @@ Bem-vindo ao repositório **PL/SQL Oracle Projects**, que contém scripts para e
 - **Consultas**
 - **Agrupamento de Tuplas**
 - **Manipulação de Data/Hora**
+- **SubConsultas**
